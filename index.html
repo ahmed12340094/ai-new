@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Bloody - حماية ذكاء</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: radial-gradient(circle at center, #1a001a, #000);
+      color: white;
+      direction: rtl;
+    }
+    header {
+      background-color: #0d0d0d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #ff0055;
+    }
+    nav a, .dev-link {
+      color: #fff;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .hero {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .hero h1 {
+      color: #ff3366;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      color: #ccc;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      font-size: 1.2rem;
+    }
+    .buttons a {
+      background-color: #ff0055;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      margin: 0.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-block;
+    }
+    footer {
+      background-color: #0d0d0d;
+      text-align: center;
+      padding: 1rem;
+      color: #888;
+      font-size: 0.9rem;
+    }
+    .chat-box {
+      background-color: #111;
+      margin: 2rem auto;
+      padding: 1rem;
+      max-width: 600px;
+      border-radius: 10px;
+    }
+    .chat-box textarea {
+      width: 100%;
+      height: 80px;
+      padding: 1rem;
+      border-radius: 8px;
+      border: none;
+      resize: none;
+      font-size: 1rem;
+      background-color: #222;
+      color: white;
+    }
+    .chat-box button {
+      margin-top: 1rem;
+      padding: 0.7rem 1.2rem;
+      background-color: #ff0055;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .chat-response {
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: #1b001b;
+      border-radius: 8px;
+      color: #ddd;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body><header>
+  <div>
+    <nav>
+      <a href="#">الرئيسية</a>
+      <a href="#">عن المشروع</a>
+      <a href="#">المزايا</a>
+      <a href="#">الدردشة الذكية</a>
+    </nav>
+  </div>
+  <div>
+    <a class="dev-link" href="https://t.me/hoopis_6" target="_blank">@hoopis_6</a>
+  </div>
+</header><section class="hero">
+  <h1>AI Bloody</h1>
+  <h2>حماية ذكاء</h2>
+  <p>منصة الذكاء الاصطناعي AI Bloody لحمايتك ومساعدتك باستخدام أحدث تقنيات الذكاء الاصطناعي.</p>
+  <div class="buttons">
+    <a href="#chat">ابدأ الدردشة الآن</a>
+    <a href="#">شاهد العرض التوضيحي</a>
+  </div>
+</section><section class="chat-box" id="chat">
+  <textarea id="userInput" placeholder="اكتب سؤالك هنا..."></textarea>
+  <button onclick="askAI()">إرسال</button>
+  <div class="chat-response" id="responseBox"></div>
+</section><footer>
+  &copy; 2025 جميع الحقوق محفوظة لـ AI Bloody
+</footer><script>
+async function askAI() {
+  const input = document.getElementById("userInput").value;
+  const responseBox = document.getElementById("responseBox");
+  responseBox.textContent = "... جاري المعالجة";
+
+  try {
+    const res = await fetch("https://baithek.com/chatbee/health_ai/new_health.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "User-Agent": "okhttp/4.9.2"
+      },
+      body: JSON.stringify({
+        name: "AI Bloody",
+        messages: [{ role: "user", content: input }],
+        n: 1,
+        stream: true
+      })
+    });
+    const data = await res.json();
+    const content = data.choices?.[0]?.message?.content || "حدث خطأ أثناء المعالجة";
+    responseBox.textContent = content;
+  } catch (e) {
+    responseBox.textContent = "⚠️ حدث خطأ أثناء الاتصال بالخادم";
+  }
+}
+</script></body>
+</html>
